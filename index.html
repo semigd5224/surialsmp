@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SurialSMP | Лучший Minecraft сервер</title>
+    <!-- Font Awesome 6 (иконки) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: современный стиль + моноширинный акцент -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at 10% 20%, #0a0f1a, #03060c);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: #f0f3fa;
+            line-height: 1.5;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Текстурный фон — намёк на блоки (пиксельная сетка) */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: repeating-linear-gradient(0deg, rgba(46, 62, 45, 0.12) 0px, rgba(46, 62, 45, 0.12) 2px, transparent 2px, transparent 6px),
+                              repeating-linear-gradient(90deg, rgba(46, 62, 45, 0.12) 0px, rgba(46, 62, 45, 0.12) 2px, transparent 2px, transparent 6px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* главный контейнер */
+        .wrapper {
+            position: relative;
+            z-index: 2;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem;
+        }
+
+        /* стиль карточек и секций */
+        .glass-card {
+            background: rgba(15, 25, 35, 0.68);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            border: 1px solid rgba(72, 187, 120, 0.3);
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(72, 187, 120, 0.15) inset;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(72, 187, 120, 0.6);
+            box-shadow: 0 25px 40px -15px black;
+            transform: translateY(-3px);
+        }
+
+        /* заголовок */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .server-name {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #E0F2E9, #92e3a9, #3fa46a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.01em;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            margin-bottom: 0.75rem;
+        }
+
+        .tagline {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: #b4e0c4;
+            background: rgba(0, 0, 0, 0.35);
+            display: inline-block;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+        }
+
+        .badge-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #1a2a24c9;
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 1rem;
+            border-left: 2px solid #4caf7f;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: #4cff9e;
+            border-radius: 50%;
+            box-shadow: 0 0 6px #2eff8c;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; transform: scale(0.9);}
+            100% { opacity: 1; transform: scale(1.2);}
+        }
+
+        /* двухколоночные секции */
+        .links-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin: 2rem 0 2.5rem;
+        }
+
+        .social-card {
+            flex: 1;
+            min-width: 240px;
+            background: rgba(8, 18, 24, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 1.8rem;
+            padding: 1.8rem 1rem;
+            transition: all 0.25s;
+            text-align: center;
+            border: 1px solid rgba(66, 153, 98, 0.4);
+            box-shadow: 0 15px 25px -12px rgba(0, 0, 0, 0.4);
+        }
+
+        .social-card i {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-card h3 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-card p {
+            opacity: 0.8;
+            margin-bottom: 1.3rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-social {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 0.7rem 1.6rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.2s;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .telegram-btn:hover {
+            background: #26A5E4;
+            border-color: #26A5E4;
+            box-shadow: 0 8px 18px #26a5e44d;
+            transform: scale(1.02);
+        }
+
+        .discord-btn:hover {
+            background: #5865F2;
+            border-color: #5865F2;
+            box-shadow: 0 8px 18px #5865f266;
+            transform: scale(1.02);
+        }
+
+        .telegram-btn i, .discord-btn i {
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        /* ip блок */
+        .ip-section {
+            margin: 2rem auto 2rem;
+            max-width: 650px;
+        }
+
+        .ip-card {
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            padding: 1.5rem 1.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            border: 1px solid #3d7659;
+        }
+
+        .ip-address {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #0f1a1f;
+            padding: 0.6rem 1.3rem;
+            border-radius: 3rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
+            border: 1px solid #2d6b4c;
+        }
+
+        .ip-address i {
+            color: #65d694;
+            font-size: 1.3rem;
+        }
+
+        .copy-btn {
+            background: #2c4e3c;
+            border: none;
+            color: white;
+            padding: 0.6rem 1.4rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.2s;
+            font-family: inherit;
+        }
+
+        .copy-btn:hover {
+            background: #3f8860;
+            transform: scale(0.97);
+            box-shadow: 0 0 8px #72e0a0;
+        }
+
+        /* фичи / описание */
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.8rem;
+            margin: 3rem 0 2rem;
+        }
+
+        .feature-item {
+            background: rgba(20, 30, 28, 0.7);
+            backdrop-filter: blur(5px);
+            padding: 1rem 1.8rem;
+            border-radius: 3rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+            border: 1px solid rgba(100, 200, 130, 0.3);
+        }
+
+        .feature-item i {
+            color: #7fdf9e;
+            font-size: 1.2rem;
+        }
+
+        /* описание сервера */
+        .description {
+            background: rgba(10, 18, 22, 0.7);
+            border-radius: 2rem;
+            padding: 1.8rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 2rem auto;
+            border-left: 4px solid #4caf7f;
+        }
+
+        .description p {
+            font-size: 1.05rem;
+            margin: 0.4rem 0;
+            color: #d6ede2;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 0.8rem;
+            opacity: 0.7;
+            border-top: 1px solid rgba(72, 187, 120, 0.2);
+            padding-top: 2rem;
+        }
+
+        @media (max-width: 700px) {
+            .wrapper {
+                padding: 1.2rem;
+            }
+            .server-name {
+                font-size: 2.7rem;
+            }
+            .tagline {
+                font-size: 1rem;
+            }
+            .ip-address {
+                font-size: 0.9rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .social-card h3 {
+                font-size: 1.5rem;
+            }
+            .btn-social {
+                padding: 0.55rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ip-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .copy-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        a {
+            text-decoration: none;
+        }
+        button {
+            background: none;
+            border: none;
+        }
+        .glow-text {
+            text-shadow: 0 0 6px #4caf7f70;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <!-- Герой с названием сервера -->
+    <div class="hero">
+        <h1 class="server-name">⚔️ SURIALSMP ⚔️</h1>
+        <div class="tagline">
+            <i class="fas fa-crown" style="margin-right: 8px;"></i> Истинное выживание | Дружное комьюнити
+        </div>
+        <div class="badge-status">
+            <span class="status-dot"></span>
+            <span>Сервер активен • Java + Bedrock • 1.20+</span>
+        </div>
+    </div>
+
+    <!--  ДВЕ ГЛАВНЫЕ ССЫЛКИ: TELEGRAM И DISCORD (согласно заданию) -->
+    <div class="links-grid">
+        <!-- Telegram карточка -->
+        <div class="social-card">
+            <i class="fab fa-telegram" style="color: #34A9E0;"></i>
+            <h3>Telegram</h3>
+            <p>Новости, ивенты, общение с игроками</p>
+            <a href="https://t.me/+Cs6qZN6wSUgzMWZi" target="_blank" rel="noopener noreferrer" class="btn-social telegram-btn">
+                <i class="fab fa-telegram"></i> Вступить в Telegram
+            </a>
+        </div>
+
+        <!-- Discord карточка -->
+        <div class="social-card">
+            <i class="fab fa-discord" style="color: #5865F2;"></i>
+            <h3>Discord</h3>
+            <p>Голосовые каналы, тикеты, поддержка 24/7</p>
+            <a href="https://discord.gg/qCuhzXbZu" target="_blank" rel="noopener noreferrer" class="btn-social discord-btn">
+                <i class="fab fa-discord"></i> Присоединиться к Discord
+            </a>
+        </div>
+    </div>
+
+    <!-- Информация о подключении к серверу (IP / копирование) -->
+    <div class="ip-section">
+        <div class="ip-card glass-card">
+            <div class="ip-address">
+                <i class="fas fa-server"></i>
+                <span id="serverIpDisplay">play.surialsmp.net</span>
+            </div>
+            <button class="copy-btn" id="copyIpBtn">
+                <i class="fas fa-copy"></i> Копировать IP
+            </button>
+        </div>
+        <p style="font-size: 0.75rem; text-align: center; margin-top: 10px; opacity: 0.7;">
+            <i class="fas fa-info-circle"></i> Версия: 1.20.4 – 1.21 | Bedrock порт: 19132
+        </p>
+    </div>
+
+    <!-- Преимущества / стиль игрового процесса -->
+    <div class="features">
+        <div class="feature-item"><i class="fas fa-tents"></i> Кланы и территории</div>
+        <div class="feature-item"><i class="fas fa-gem"></i> Кастомные улучшения</div>
+        <div class="feature-item"><i class="fas fa-chart-line"></i> Экономика & Аукцион</div>
+        <div class="feature-item"><i class="fas fa-calendar-week"></i> Ивенты каждую неделю</div>
+    </div>
+
+    <!-- Описание сервера SurialSMP -->
+    <div class="description">
+        <p><i class="fas fa-quote-left" style="margin-right: 8px; color: #6fcf97;"></i> 
+        <strong>SurialSMP</strong> — уникальный проект, где классическое выживание встречается с дружелюбным сообществом. 
+        Приватные территории, увлекательные квесты, активная администрация и никакого гриферства.</p>
+        <p style="margin-top: 12px;">🎮 Присоединяйся к нам через Telegram и Discord, чтобы узнать IP, анонсы и стать частью большой семьи!</p>
+        <div style="margin-top: 1rem;">
+            <span style="background: #1f3d2e; border-radius: 3rem; padding: 0.2rem 1rem; font-size: 0.8rem;"><i class="fas fa-users"></i> 300+ активных игроков месяц</span>
+        </div>
+    </div>
+
+    <!-- Дополнительная плашка с командами / удобный блок "Быстрый старт" -->
+    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin: 2rem 0 0.5rem;">
+        <div style="background: rgba(0,0,0,0.4); border-radius: 2rem; padding: 0.5rem 1.2rem; font-size: 0.8rem;">
+            <i class="fas fa-hashtag"></i> /register пароль
+        </div>
+        <div style="background: rgba(0,0,0,0.4); border-radius: 2rem; padding: 0.5rem 1.2rem; font-size: 0.8rem;">
+            <i class="fas fa-envelope"></i> /discord — связать аккаунт
+        </div>
+        <div style="background: rgba(0,0,0,0.4); border-radius: 2rem; padding: 0.5rem 1.2rem; font-size: 0.8rem;">
+            <i class="fas fa-ticket-alt"></i> /help — вся информация
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2025 SurialSMP — неофициальный фанатский сервер Minecraft. </p>
+        <p style="margin-top: 6px;">✨ Присоединяйся к приключению ✨</p>
+    </div>
+</div>
+
+<!-- Скрипт для копирования IP и небольшой интерактив -->
+<script>
+    (function() {
+        const ipSpan = document.getElementById('serverIpDisplay');
+        const copyBtn = document.getElementById('copyIpBtn');
+        const serverIP = 'play.surialsmp.net';   // легко изменить через код, владелец может подставить свой IP
+
+        // установка IP из переменной (если нужно изменить в будущем)
+        if(ipSpan) ipSpan.innerText = serverIP;
+
+        function copyToClipboard(text) {
+            // Современный clipboard API
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast('✅ IP скопирован: ' + text);
+                }).catch(() => {
+                    fallbackCopy(text);
+                });
+            } else {
+                fallbackCopy(text);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            showToast('📋 IP скопирован (резервный способ)');
+        }
+
+        function showToast(msg) {
+            // Создаем уведомление-тост
+            let toast = document.createElement('div');
+            toast.innerText = msg;
+            toast.style.position = 'fixed';
+            toast.style.bottom = '20px';
+            toast.style.left = '50%';
+            toast.style.transform = 'translateX(-50%)';
+            toast.style.backgroundColor = '#1c3b2f';
+            toast.style.color = '#e3ffe8';
+            toast.style.padding = '12px 24px';
+            toast.style.borderRadius = '40px';
+            toast.style.fontSize = '0.9rem';
+            toast.style.fontWeight = '500';
+            toast.style.backdropFilter = 'blur(8px)';
+            toast.style.border = '1px solid #6cbb88';
+            toast.style.zIndex = '9999';
+            toast.style.boxShadow = '0 8px 20px rgba(0,0,0,0.4)';
+            toast.style.fontFamily = "'Inter', sans-serif";
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.3s';
+                setTimeout(() => toast.remove(), 400);
+            }, 2200);
+        }
+
+        if(copyBtn) {
+            copyBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                copyToClipboard(serverIP);
+            });
+        }
+
+        // Плавное появление элементов
+        const cards = document.querySelectorAll('.social-card, .ip-card, .feature-item, .description');
+        cards.forEach((el, idx) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(12px)';
+            el.style.transition = `opacity 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1) ${idx * 0.05}s, transform 0.4s ease`;
+            setTimeout(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0px)';
+            }, 100);
+        });
+    })();
+</script>
+</body>
+</html>
