@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>SurialSMP | Лучший Minecraft сервер</title>
-    <!-- Font Awesome 6 (иконки) -->
+    <title>SurialSMP | Minecraft SMP сервер 1.21.11</title>
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts: современный стиль + моноширинный акцент -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -25,7 +25,6 @@
             overflow-x: hidden;
         }
 
-        /* Текстурный фон — намёк на блоки (пиксельная сетка) */
         body::before {
             content: "";
             position: fixed;
@@ -39,7 +38,6 @@
             z-index: 0;
         }
 
-        /* главный контейнер */
         .wrapper {
             position: relative;
             z-index: 2;
@@ -48,7 +46,6 @@
             padding: 2rem 1.5rem 3rem;
         }
 
-        /* стиль карточек и секций */
         .glass-card {
             background: rgba(15, 25, 35, 0.68);
             backdrop-filter: blur(12px);
@@ -64,7 +61,6 @@
             transform: translateY(-3px);
         }
 
-        /* заголовок */
         .hero {
             text-align: center;
             margin-bottom: 3rem;
@@ -120,7 +116,6 @@
             100% { opacity: 1; transform: scale(1.2);}
         }
 
-        /* двухколоночные секции */
         .links-grid {
             display: flex;
             flex-wrap: wrap;
@@ -174,26 +169,9 @@
             font-size: 1rem;
         }
 
-        .telegram-btn:hover {
-            background: #26A5E4;
-            border-color: #26A5E4;
-            box-shadow: 0 8px 18px #26a5e44d;
-            transform: scale(1.02);
-        }
+        .telegram-btn:hover { background: #26A5E4; border-color: #26A5E4; box-shadow: 0 8px 18px #26a5e44d; transform: scale(1.02); }
+        .discord-btn:hover { background: #5865F2; border-color: #5865F2; box-shadow: 0 8px 18px #5865f266; transform: scale(1.02); }
 
-        .discord-btn:hover {
-            background: #5865F2;
-            border-color: #5865F2;
-            box-shadow: 0 8px 18px #5865f266;
-            transform: scale(1.02);
-        }
-
-        .telegram-btn i, .discord-btn i {
-            font-size: 1.2rem;
-            margin: 0;
-        }
-
-        /* ip блок */
         .ip-section {
             margin: 2rem auto 2rem;
             max-width: 650px;
@@ -224,11 +202,7 @@
             font-size: 1.2rem;
             letter-spacing: 0.5px;
             border: 1px solid #2d6b4c;
-        }
-
-        .ip-address i {
-            color: #65d694;
-            font-size: 1.3rem;
+            word-break: break-all;
         }
 
         .copy-btn {
@@ -246,13 +220,8 @@
             font-family: inherit;
         }
 
-        .copy-btn:hover {
-            background: #3f8860;
-            transform: scale(0.97);
-            box-shadow: 0 0 8px #72e0a0;
-        }
+        .copy-btn:hover { background: #3f8860; transform: scale(0.97); box-shadow: 0 0 8px #72e0a0; }
 
-        /* фичи / описание */
         .features {
             display: flex;
             flex-wrap: wrap;
@@ -272,14 +241,79 @@
             gap: 12px;
             font-size: 1rem;
             border: 1px solid rgba(100, 200, 130, 0.3);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .feature-item:hover {
+            background: rgba(72, 187, 120, 0.3);
+            transform: translateY(-2px);
         }
 
-        .feature-item i {
-            color: #7fdf9e;
-            font-size: 1.2rem;
+        .info-double {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin: 2rem 0 1.5rem;
         }
 
-        /* описание сервера */
+        .info-card {
+            flex: 1;
+            background: rgba(8, 18, 24, 0.75);
+            backdrop-filter: blur(12px);
+            border-radius: 1.8rem;
+            padding: 1.8rem;
+            border: 1px solid rgba(72, 187, 120, 0.4);
+            transition: 0.2s;
+        }
+
+        .info-card h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 3px solid #6fcf97;
+            padding-left: 15px;
+        }
+
+        .stat-highlight {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #a3f0c0;
+            display: inline-block;
+            margin: 0.25rem 0;
+        }
+
+        .donate-list {
+            list-style: none;
+            margin: 1rem 0 0.5rem;
+        }
+        .donate-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .donate-list li i { width: 24px; color: #f5b042; }
+
+        .btn-donate {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(95deg, #2c5e44, #1e3b2c);
+            padding: 0.7rem 1.8rem;
+            border-radius: 2.5rem;
+            font-weight: 700;
+            margin-top: 1rem;
+            text-decoration: none;
+            color: white;
+            border: 1px solid #7edda3;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .btn-donate:hover { background: linear-gradient(95deg, #3f8862, #2b553d); transform: scale(1.02); }
+
         .description {
             background: rgba(10, 18, 22, 0.7);
             border-radius: 2rem;
@@ -288,12 +322,6 @@
             max-width: 800px;
             margin: 2rem auto;
             border-left: 4px solid #4caf7f;
-        }
-
-        .description p {
-            font-size: 1.05rem;
-            margin: 0.4rem 0;
-            color: #d6ede2;
         }
 
         .footer {
@@ -305,69 +333,144 @@
             padding-top: 2rem;
         }
 
-        @media (max-width: 700px) {
-            .wrapper {
-                padding: 1.2rem;
-            }
-            .server-name {
-                font-size: 2.7rem;
-            }
-            .tagline {
-                font-size: 1rem;
-            }
-            .ip-address {
-                font-size: 0.9rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .social-card h3 {
-                font-size: 1.5rem;
-            }
-            .btn-social {
-                padding: 0.55rem 1.2rem;
-            }
+        /* Модальные окна */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
         }
-
-        @media (max-width: 480px) {
-            .ip-card {
-                flex-direction: column;
-                text-align: center;
-            }
-            .copy-btn {
-                width: 100%;
-                justify-content: center;
-            }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
-
-        a {
-            text-decoration: none;
+        .modal-container {
+            background: #0f1a1fe6;
+            backdrop-filter: blur(16px);
+            width: 90%;
+            max-width: 500px;
+            border-radius: 2rem;
+            border: 1px solid #5fae7e;
+            box-shadow: 0 30px 40px rgba(0,0,0,0.5);
+            overflow: hidden;
+            animation: modalFadeIn 0.2s ease-out;
+            text-align: center;
         }
-        button {
+        .modal-container.wide {
+            max-width: 750px;
+        }
+        @keyframes modalFadeIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .modal-header {
+            padding: 1.2rem 1.8rem;
+            background: #0e2420cc;
+            border-bottom: 1px solid #3b8162;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .modal-close {
             background: none;
             border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #bfffd9;
+            transition: 0.2s;
         }
-        .glow-text {
-            text-shadow: 0 0 6px #4caf7f70;
+        .modal-close:hover { color: #ff8877; transform: scale(1.1); }
+        .modal-body {
+            padding: 1.8rem;
+            font-size: 1rem;
+            color: #e5f2ec;
+            line-height: 1.5;
         }
+        .modal-body i {
+            font-size: 2rem;
+            color: #6fcf97;
+            margin-bottom: 1rem;
+        }
+        .modal-discord-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #5865F2;
+            padding: 0.7rem 1.6rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+            margin-top: 1.2rem;
+            transition: 0.2s;
+        }
+        .modal-discord-link:hover {
+            background: #4752c4;
+            transform: scale(1.02);
+        }
+        .rules-list {
+            list-style: none;
+            text-align: left;
+            margin: 0;
+        }
+        .rules-list li {
+            margin-bottom: 12px;
+            padding-left: 12px;
+            border-left: 2px solid #4caf7f;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        .rules-list li strong {
+            color: #ffd966;
+            font-weight: 600;
+        }
+        .rule-note {
+            margin-top: 20px;
+            background: #1f2f2a;
+            padding: 12px;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            border-left: 3px solid #ffaa44;
+            text-align: left;
+        }
+        @media (max-width: 600px) {
+            .modal-body { padding: 1.2rem; }
+            .rules-list li { font-size: 0.8rem; }
+        }
+        button { background: none; border: none; }
     </style>
 </head>
 <body>
 <div class="wrapper">
-    <!-- Герой с названием сервера -->
     <div class="hero">
         <h1 class="server-name">⚔️ SURIALSMP ⚔️</h1>
         <div class="tagline">
-            <i class="fas fa-crown" style="margin-right: 8px;"></i> Истинное выживание | Дружное комьюнити
+            <i class="fas fa-crown" style="margin-right: 8px;"></i> Java 1.21.11 • Настоящий SMP опыт
         </div>
         <div class="badge-status">
             <span class="status-dot"></span>
-            <span>Сервер активен • Java + Bedrock • 1.20+</span>
+            <span>🕒 Включается по расписанию или по просьбам игроков • Java 1.21.11</span>
         </div>
     </div>
 
-    <!--  ДВЕ ГЛАВНЫЕ ССЫЛКИ: TELEGRAM И DISCORD (согласно заданию) -->
     <div class="links-grid">
-        <!-- Telegram карточка -->
         <div class="social-card">
             <i class="fab fa-telegram" style="color: #34A9E0;"></i>
             <h3>Telegram</h3>
@@ -376,8 +479,6 @@
                 <i class="fab fa-telegram"></i> Вступить в Telegram
             </a>
         </div>
-
-        <!-- Discord карточка -->
         <div class="social-card">
             <i class="fab fa-discord" style="color: #5865F2;"></i>
             <h3>Discord</h3>
@@ -388,83 +489,137 @@
         </div>
     </div>
 
-    <!-- Информация о подключении к серверу (IP / копирование) -->
     <div class="ip-section">
         <div class="ip-card glass-card">
             <div class="ip-address">
                 <i class="fas fa-server"></i>
-                <span id="serverIpDisplay">play.surialsmp.net</span>
+                <span id="serverIpDisplay">surialsmp.aternos.me:42976</span>
             </div>
             <button class="copy-btn" id="copyIpBtn">
                 <i class="fas fa-copy"></i> Копировать IP
             </button>
         </div>
         <p style="font-size: 0.75rem; text-align: center; margin-top: 10px; opacity: 0.7;">
-            <i class="fas fa-info-circle"></i> Версия: 1.20.4 – 1.21 | Bedrock порт: 19132
+            <i class="fas fa-info-circle"></i> Java версия: 1.21.11
         </p>
     </div>
 
-    <!-- Преимущества / стиль игрового процесса -->
     <div class="features">
-        <div class="feature-item"><i class="fas fa-tents"></i> Кланы и территории</div>
-        <div class="feature-item"><i class="fas fa-gem"></i> Кастомные улучшения</div>
-        <div class="feature-item"><i class="fas fa-chart-line"></i> Экономика & Аукцион</div>
-        <div class="feature-item"><i class="fas fa-calendar-week"></i> Ивенты каждую неделю</div>
+        <div class="feature-item" id="donateFeatureBtn"><i class="fas fa-gem"></i> Донат-привилегии</div>
+        <div class="feature-item" id="supportFeatureBtn"><i class="fas fa-rocket"></i> Поддержка сервера</div>
+        <div class="feature-item" id="openRulesBtn"><i class="fas fa-gavel"></i> Правила сервера</div>
     </div>
 
-    <!-- Описание сервера SurialSMP -->
+    <div class="info-double">
+        <div class="info-card">
+            <h3><i class="fas fa-chart-simple"></i> О проекте</h3>
+            <p><span class="stat-highlight">📅 7 месяцев</span> — именно столько SurialSMP радует игроков в формате SMP.</p>
+            <p><span class="stat-highlight">👥 Пиковый онлайн: 26 человек</span> — уютное комьюнити, где каждый важен.</p>
+            <p><i class="fas fa-cloud-arrow-up"></i> <strong>Скоро важное обновление:</strong> переезд на <strong>платный хостинг</strong> — стабильность, мощный процессор и отсутствие лагов. Твоя поддержка помогает нам расти.</p>
+        </div>
+        <div class="info-card">
+            <h3><i class="fas fa-hand-holding-heart"></i> Поддержать проект</h3>
+            <ul class="donate-list">
+                <li><i class="fas fa-crown"></i> <strong>VIP-статусы</strong> — эксклюзивные киты и эффекты</li>
+                <li><i class="fas fa-bed"></i> <strong>Приватные регионы</strong> — больше защиты</li>
+                <li><i class="fas fa-tachometer-alt"></i> <strong>Приоритетная поддержка</strong> и доступ к бета-тестам</li>
+            </ul>
+            <button class="btn-donate" id="donateButtonModal"><i class="fas fa-donate"></i> Подробнее о донате</button>
+        </div>
+    </div>
+
     <div class="description">
         <p><i class="fas fa-quote-left" style="margin-right: 8px; color: #6fcf97;"></i> 
-        <strong>SurialSMP</strong> — уникальный проект, где классическое выживание встречается с дружелюбным сообществом. 
-        Приватные территории, увлекательные квесты, активная администрация и никакого гриферства.</p>
-        <p style="margin-top: 12px;">🎮 Присоединяйся к нам через Telegram и Discord, чтобы узнать IP, анонсы и стать частью большой семьи!</p>
+        <strong>SurialSMP</strong> — это атмосферный SMP-сервер (Survival Multiplayer) с дружелюбным сообществом и уникальными механиками. 
+        Никакого гриферства, честная экономика и тёплая атмосфера. Мы ценим каждого игрока!</p>
+        <p style="margin-top: 12px;">🎮 Присоединяйся к нам через Telegram и Discord, чтобы всегда быть в курсе событий. Сервер работает на <strong>Java 1.21.11</strong>.</p>
         <div style="margin-top: 1rem;">
-            <span style="background: #1f3d2e; border-radius: 3rem; padding: 0.2rem 1rem; font-size: 0.8rem;"><i class="fas fa-users"></i> 300+ активных игроков месяц</span>
+            <span style="background: #1f3d2e; border-radius: 3rem; padding: 0.2rem 1rem; font-size: 0.8rem;"><i class="fas fa-users"></i> 26 онлайн в пике — и это только начало нашего SMP!</span>
         </div>
     </div>
 
-    <!-- Дополнительная плашка с командами / удобный блок "Быстрый старт" -->
     <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin: 2rem 0 0.5rem;">
-        <div style="background: rgba(0,0,0,0.4); border-radius: 2rem; padding: 0.5rem 1.2rem; font-size: 0.8rem;">
-            <i class="fas fa-hashtag"></i> /register пароль
-        </div>
-        <div style="background: rgba(0,0,0,0.4); border-radius: 2rem; padding: 0.5rem 1.2rem; font-size: 0.8rem;">
-            <i class="fas fa-envelope"></i> /discord — связать аккаунт
-        </div>
-        <div style="background: rgba(0,0,0,0.4); border-radius: 2rem; padding: 0.5rem 1.2rem; font-size: 0.8rem;">
-            <i class="fas fa-ticket-alt"></i> /help — вся информация
-        </div>
+        <div style="background: rgba(0,0,0,0.4); border-radius: 2rem; padding: 0.5rem 1.2rem; font-size: 0.8rem;"><i class="fas fa-hashtag"></i> /register пароль</div>
+        <div style="background: rgba(0,0,0,0.4); border-radius: 2rem; padding: 0.5rem 1.2rem; font-size: 0.8rem;"><i class="fas fa-envelope"></i> /discord — связать аккаунт</div>
+        <div style="background: rgba(0,0,0,0.4); border-radius: 2rem; padding: 0.5rem 1.2rem; font-size: 0.8rem;"><i class="fas fa-ticket-alt"></i> /help — вся информация</div>
     </div>
 
     <div class="footer">
-        <p>© 2025 SurialSMP — неофициальный фанатский сервер Minecraft. </p>
-        <p style="margin-top: 6px;">✨ Присоединяйся к приключению ✨</p>
+        <p>© 2025 SurialSMP — Minecraft SMP сервер на Java 1.21.11.</p>
+        <p style="margin-top: 6px;">✨ Скоро платный хостинг: стабильность и низкий пинг ✨</p>
     </div>
 </div>
 
-<!-- Скрипт для копирования IP и небольшой интерактив -->
+<!-- Модальное окно правил с пунктом 5.4: BAN навсегда -->
+<div id="rulesModal" class="modal-overlay">
+    <div class="modal-container wide">
+        <div class="modal-header">
+            <h2><i class="fas fa-scroll"></i> Правила сервера</h2>
+            <button class="modal-close" id="closeRulesModalBtn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <ul class="rules-list">
+                <li><strong>1.1</strong> Оскорбление родных/администрации/сервера: MUTE 2 часа + warn / BAN</li>
+                <li><strong>2.1</strong> Оскорбление: MUTE 30 минут + warn</li>
+                <li><strong>3.1</strong> Оскорблении нации / государств / розжиг / нацизм и символика: MUTE 1 час + warn / BAN</li>
+                <li><strong>4.1</strong> Отказ от проверки: BAN 5 ДНЕЙ</li>
+                <li><strong>5.1</strong> Публикация любого шокирующего или порнографического контента: MUTE 120 минут + WARN</li>
+                <li><strong>6.1</strong> Завуалированные оскорбления: MUTE 15 минут</li>
+                <li><strong>7.1</strong> Флуд/спам/капс: MUTE от 30 минут * (дополнение ниже)</li>
+                <li><strong>8.1</strong> Реклама в любой чат или рекламные ссылки в статусе/описании: BAN</li>
+                <li><strong>1.2</strong> Злоупотребление иероглифами/транслитом/другими языками (английский разрешен): MUTE 15 минут</li>
+                <li><strong>2.2</strong> Неадекватное поведение: MUTE 30 минут</li>
+                <li><strong>4.2</strong> Если администратор просит вас не делать что-то, вы должны к нему прислушаться. Не стоит искать изъяны в правилах, их всегда можно дополнить 🙂</li>
+                <li><strong>5.2</strong> Запрещены оскорбления прямые и непрямые</li>
+                <li><strong>6.2</strong> Запрещены непингабельные ники. Пустые символы, арабские иероглифы и т. п.</li>
+                <li><strong>7.2</strong> Запрещены нечитаемые ники. Иероглифы, палочки, квадратики и т. п.</li>
+                <li><strong>8.2</strong> Запрещены никнеймы "everyone" и им подобные.</li>
+                <li><strong>9.2</strong> Запрещено копировать чужие ники, или ставить приставки администрации и модерации сервера</li>
+                <li><strong>1.3</strong> Запрещены ники капсом, матом, упоминанием родных</li>
+                <li><strong>2.3</strong> Использование XRAY и программ для просмотра через стены: BAN 5 ДНЕЙ</li>
+                <li><strong>3.3</strong> Использование чит-клиентов с KillAura AutoAim AutoTotem и тд: BAN 5 ДНЕЙ</li>
+                <li><strong>4.3</strong> Использование Fly SpeedHack ClickTeleport и тд: BAN 5 ДНЕЙ</li>
+                <li><strong>5.3</strong> Использование программ для порчи жизни игрокам: BAN 5 ДНЕЙ</li>
+                <li><strong>5.4</strong> Запрещено заходить на чужие аккаунты в своих целях или общих — BAN навсегда</li>
+            </ul>
+            <div class="rule-note">
+                <i class="fas fa-info-circle"></i> <strong>Дополнение к п. 7.1:</strong> Флуд/спам/капс наказывается мутом от 30 минут в зависимости от тяжести. Администрация оставляет за собой право ужесточать наказание при систематических нарушениях.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Универсальное модальное окно для доната/поддержки -->
+<div id="infoModal" class="modal-overlay">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h2 id="modalTitle"><i class="fas fa-info-circle"></i> Информация</h2>
+            <button class="modal-close" id="closeInfoModalBtn">&times;</button>
+        </div>
+        <div class="modal-body" id="modalBodyContent">
+            <i class="fab fa-discord"></i>
+            <p id="modalText">Текст будет заменён</p>
+            <a href="https://discord.gg/qCuhzXbZu" target="_blank" class="modal-discord-link">
+                <i class="fab fa-discord"></i> Перейти в Discord
+            </a>
+        </div>
+    </div>
+</div>
+
 <script>
     (function() {
+        // Копирование IP
         const ipSpan = document.getElementById('serverIpDisplay');
         const copyBtn = document.getElementById('copyIpBtn');
-        const serverIP = 'play.surialsmp.net';   // легко изменить через код, владелец может подставить свой IP
-
-        // установка IP из переменной (если нужно изменить в будущем)
+        const serverIP = 'surialsmp.aternos.me:42976';
         if(ipSpan) ipSpan.innerText = serverIP;
 
         function copyToClipboard(text) {
-            // Современный clipboard API
             if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(text).then(() => {
-                    showToast('✅ IP скопирован: ' + text);
-                }).catch(() => {
-                    fallbackCopy(text);
-                });
-            } else {
-                fallbackCopy(text);
-            }
+                navigator.clipboard.writeText(text).then(() => showToast('✅ IP скопирован: ' + text))
+                .catch(() => fallbackCopy(text));
+            } else fallbackCopy(text);
         }
-
         function fallbackCopy(text) {
             const textarea = document.createElement('textarea');
             textarea.value = text;
@@ -472,11 +627,9 @@
             textarea.select();
             document.execCommand('copy');
             document.body.removeChild(textarea);
-            showToast('📋 IP скопирован (резервный способ)');
+            showToast('📋 IP скопирован');
         }
-
         function showToast(msg) {
-            // Создаем уведомление-тост
             let toast = document.createElement('div');
             toast.innerText = msg;
             toast.style.position = 'fixed';
@@ -501,24 +654,67 @@
                 setTimeout(() => toast.remove(), 400);
             }, 2200);
         }
+        if(copyBtn) copyBtn.addEventListener('click', (e) => { e.preventDefault(); copyToClipboard(serverIP); });
 
-        if(copyBtn) {
-            copyBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                copyToClipboard(serverIP);
+        // Модальное окно правил
+        const rulesModal = document.getElementById('rulesModal');
+        const openRulesBtn = document.getElementById('openRulesBtn');
+        const closeRulesBtn = document.getElementById('closeRulesModalBtn');
+        function openRulesModal() { rulesModal.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeRulesModal() { rulesModal.classList.remove('active'); document.body.style.overflow = ''; }
+        if(openRulesBtn) openRulesBtn.addEventListener('click', openRulesModal);
+        if(closeRulesBtn) closeRulesBtn.addEventListener('click', closeRulesModal);
+        rulesModal.addEventListener('click', (e) => { if(e.target === rulesModal) closeRulesModal(); });
+        document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && rulesModal.classList.contains('active')) closeRulesModal(); });
+
+        // Универсальное модальное окно для доната/поддержки
+        const infoModal = document.getElementById('infoModal');
+        const closeInfoBtn = document.getElementById('closeInfoModalBtn');
+        const modalTitleElem = document.getElementById('modalTitle');
+        const modalTextElem = document.getElementById('modalText');
+
+        function openInfoModal(title, message) {
+            modalTitleElem.innerHTML = title;
+            modalTextElem.innerText = message;
+            infoModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeInfoModal() {
+            infoModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        closeInfoBtn.addEventListener('click', closeInfoModal);
+        infoModal.addEventListener('click', (e) => { if(e.target === infoModal) closeInfoModal(); });
+        document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && infoModal.classList.contains('active')) closeInfoModal(); });
+
+        // Кнопки и элементы, вызывающие модальное окно доната
+        const donateFeatureBtn = document.getElementById('donateFeatureBtn');
+        const donateButtonModal = document.getElementById('donateButtonModal');
+        const supportFeatureBtn = document.getElementById('supportFeatureBtn');
+
+        if(donateFeatureBtn) {
+            donateFeatureBtn.addEventListener('click', () => {
+                openInfoModal('<i class="fas fa-gem"></i> Донат', 'Напишите пожалуйста в Discord канал "донаты". Зайдите на текстовый канал #донаты, чтобы поддержать проект!');
+            });
+        }
+        if(donateButtonModal) {
+            donateButtonModal.addEventListener('click', () => {
+                openInfoModal('<i class="fas fa-donate"></i> Поддержка', 'Напишите пожалуйста в Discord канал "донаты". Зайдите на текстовый канал #донаты, чтобы поддержать проект!');
+            });
+        }
+        if(supportFeatureBtn) {
+            supportFeatureBtn.addEventListener('click', () => {
+                openInfoModal('<i class="fas fa-rocket"></i> Поддержка сервера', 'Напишите в текстовый канал Discord, чтобы мы вас быстрее заметили. Администрация ответит в ближайшее время!');
             });
         }
 
         // Плавное появление элементов
-        const cards = document.querySelectorAll('.social-card, .ip-card, .feature-item, .description');
-        cards.forEach((el, idx) => {
+        const animated = document.querySelectorAll('.social-card, .ip-card, .feature-item, .info-card, .description');
+        animated.forEach((el, idx) => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(12px)';
             el.style.transition = `opacity 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1) ${idx * 0.05}s, transform 0.4s ease`;
-            setTimeout(() => {
-                el.style.opacity = '1';
-                el.style.transform = 'translateY(0px)';
-            }, 100);
+            setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'translateY(0px)'; }, 100);
         });
     })();
 </script>
